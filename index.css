@@ -19,3 +19,36 @@ body {
 }
 
 
+#login-form {
+  align-self: flex-start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.login-form-field::placeholder {
+  color: #3a3a3a;
+  text-align: center;
+}
+
+.login-form-field {
+  border: none;
+  border: 1px solid #9370DB;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 0px 0px 5px 5px;
+  background-color:  #ffe6e9;
+}
+
+#login-form-submit {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: pink;
+  font-weight: bold;
+  background-color: #9370DB;
+  cursor: pointer;
+  outline: none;
+}

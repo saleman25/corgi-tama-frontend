@@ -6,14 +6,19 @@
 
 const url = "http://localhost:8080/"
 const mainSection = document.getElementById('main')
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("login-form-submit");
 
-const loginForm =  `
-<div class="container">
-<label for="uname"><b>Username</b></label>
-<input type="text" placeholder="Enter Username" name="uname" required>
+loginButton.addEventListener("click", (e) => {
+   e.preventDefault();
+    const username = loginForm.username.value 
+    const password = loginForm.password.value 
 
-<label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" required>
+    if (username === "" && password === "") {
+        // blah blah blah 
+    } else {
+        // error
+    }
 
-<button type="submit">Login</button> 
-`
+})
+
