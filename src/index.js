@@ -4,10 +4,12 @@
 //alerts
 //this :3 is :3 alot :3 
 
-const url = "http://localhost:8080/"
+const baseURL = "http://localhost:8080/"
 const mainSection = document.getElementById('main')
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
+const loginErrorMsg = document.getElementById("login-error-msg");
+let state = {page: 'login' }
 
 loginButton.addEventListener("click", (e) => {
    e.preventDefault();
@@ -17,7 +19,7 @@ loginButton.addEventListener("click", (e) => {
     if (username === "" && password === "") {
         // blah blah blah 
     } else {
-        // error
+        loginErrorMsg.style.opacity = 1;
     }
 
 })
