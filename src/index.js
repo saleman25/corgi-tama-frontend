@@ -24,3 +24,8 @@ loginButton.addEventListener("click", (e) => {
 
 })
 
+// yr gonna have to prob make a const for loging and signup so u can render it depending on what is chosen
+// render the page depending on what it chose
+    // so login signup 
+// u need to do a signuup and login preventdefaults and keep logged in and 
+// then form so u can adopt a corgi
