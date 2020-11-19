@@ -42,12 +42,14 @@ renderProgressBarsInnerHTML(){
 }
 
 renderCorgi(){
+
 let corgiDiv = document.createElement('div')
 this.div = corgiDiv
 corgiDiv.className =  "corgi-div"
 corgiDiv.dataset.id = `${this.id}`
 
-//create element for spite img
+
+// this is my default gif
 let babypup = document.createElement('img')
 this.babypup = babypup
 babypup.src = this.setGif()
@@ -66,10 +68,33 @@ progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 let buttonsArea = document.createElement('div')
 buttonsArea.className = "buttons-area"
 
+// meal button to feed || hunger meter
+let mealButton = document.createElement('img')
+this.mealButton = mealButton
+mealButton.src = "./images/heart-button.jpg"
+buttonsArea.appendChild(mealButton)
 
-// // add the stupid buttons for the game
+// pet button to pet || lonlieness meter
+let petButton = document.createElement('img')
+this.petButton = petButton
+petButton.src = "./images/heart-button-2.jpg"
+buttonsArea.appendChild(petButton)
 
-// }
+// play button to play || happiness meter
+let playButton = document.createElement('img')
+this.playButton = playButton
+playButton.src = "./images/heart-button-1.jpg"
+buttonsArea.appendChild(playButton)
+
+// add progressbars n buttons
+corgiDiv.append(progressBarsContainer, buttonsArea)
+
+//add individual corgi div to main div
+corgiContainer.appendChild(corgiDiv)
+
+this.startGame()
+
+}
 
 // startGame() {
 //     // set up a timer for the game to begin
