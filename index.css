@@ -106,6 +106,19 @@ body {
   text-decoration: none;
 }
 
+#log-in-link {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: pink;
+  font-weight: bold;
+  background-color: #9370DB;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
 .title {
   font-family: cursive;
   font-weight: bold;

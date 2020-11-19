@@ -47,7 +47,7 @@ deleteCorgi(id){
         method: "DELETE",
         headers: {'Content-Type': 'application/json'}
     })
-
+}
 }
 
 
@@ -58,4 +58,3 @@ deleteCorgi(id){
 
 
 
-}

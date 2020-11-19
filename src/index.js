@@ -1,16 +1,18 @@
-//alerts
-//this :3 is :3 alot :3 
 
 const baseURL = "http://localhost:8080/"
 let currentUser
-const userAdapter = new UserAdapter(BASEURL)
-const corgiAdapter = new CorgiAdapter(BASEURL+'/corgis')
+// const userAdapter = new UserAdapter(BASEURL)
+// const corgiAdapter = new CorgiAdapter(BASEURL+'/corgis')
 const mainSection = document.getElementById('main')
 const adoptionButton = document.getElementById('adoption-button')
-let state = {page: 'login' }
+const loginLinky = document.getElementById("log-in-link")
+loginLinky.addEventListener('click', login)
+const signupLinky = document.getElementById("sign-up-link")
+signupLinky.addEventListener('click', signup)
 
 
-const adopForm = (`
+
+const adoptForm = (`
 <h2 id="adopt-header">Adopt Me!</h2>
         
 <br>
@@ -29,9 +31,12 @@ const adopForm = (`
     </form>
   
 </div>
-`)
+`);
 
-const loginForm = (`
+
+
+
+    const loginForm = (`
     <h2 id="login-header">Login</h2>
         
     <br>
@@ -47,10 +52,11 @@ const loginForm = (`
       
         <p class="link"><a id="sign-up-link" href="#">Need to Sign Up?</a></p>
     </div>
-    `
-)
+    `);
 
-const signupForm = (`
+
+ 
+  const signupForm = (`
 <h2 id="signup-header">Sign Up</h2>
         
     <br>
@@ -65,56 +71,28 @@ const signupForm = (`
         </form>
         <p class="link" ><a id="log-in-link" href="#">Or Log In Here</a></p>
     </div>
-`)
+`);
 
-function pageState(){
-    let adoptionButtonDiv = document.getElementById('adoption-button-container')
-    adoptionButtonDiv.hidden = true 
 
-    switch(state.page){
-        case('login'):
-        mainSection.innerHTML = loginForm 
-        break;
-        case('signup'):
-        mainSection.innerHTML = signupForm 
-        break;
-    }
+function login(){
+    mainSection.innerHTML += loginForm
+    hideElements()
+
 }
 
-
-function loginOrSignup(e){
-    e.preventDefault()
-    if (e.target.id === "singup-form-submit"){
-        
-        let userObj = { user: { 
-        username: document.getElementById("signup-username-field").value, 
-        password: document.getElementById("signup-password-field").value
-        }
-        }
-        userAdapter.signUpUser(userObj)
-    } else if(e.target.id === "login-button-submit"){
-        let userObj = { user: {
-            username: document.getElementById("login-username-field").value, 
-            password: document.getElementById("login-password-field").value
-        }
-    }
-        userAdapter.loginUser(userObj)
-    }
-    document.querySelector('form').reset()
+function signup(){
+    mainSection.innerHTML += signupForm
+    hideElements()
 }
 
-function renderLoginOrSignup(e){
-    e.preventDefault()
-    if (e.target.id === "log-in-link"){
-        state.page = "login"
-        pageState()
-    } else if (e.target.id === "sign-up-link")
-    state.page = "signup"
-    pageState()
+function hideElements(){
+    document.querySelector("#signupdivy").style.display = "none"
+    document.querySelector("#logindivy").style.display = "none"
 }
+
 
 function renderAdoption(){
-    mainSection.innerHTML = adopForm
+    mainSection.innerHTML = adoptForm
     let adoptButton = document.getElementById('adopt-button')
     adoptButton.addEventListener('click', adopt)
 }
