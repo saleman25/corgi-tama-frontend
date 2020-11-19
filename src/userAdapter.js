@@ -3,31 +3,18 @@ class UserAdapter {
         this.baseURL = url 
     }
 
-    signUpUser(userObj){
-        fetch(this.baseURL+'/users', {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(userObj)
-        })
-        .then(response => response.json())
-        // blah blah error
-        // currentuser = new user
-        // render their profile 
-        // add a catch for errors
-            
-        
-    }
 
-    loginUser(userObj){
+    loginPlayer(userObj){
         fetch(this.baseURL+'/login',{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(userObj) 
         })
         .then(response => response.json())
-        // blah blah errors
-        // current user = new user 
-        // render profile
-        // add a catch for errors
+        .then(json => {
+            currentUser = new User(json.userdata.user)
+            currentUser.renderProfile
+        })
+        .catch(errors => "Oh no something went wrong!")
     }
 }

@@ -1,23 +1,18 @@
 class User {
-    constructor(username, id){
-        this.username = username;
-        this.userId = id;
+    constructor(name){
+        this.name = name;
     }
 
 renderProfile(){
     let mainSection = document.getElementById('main')
-    mainSection.innerHTML = ''
-    // logout
-    // logout event listener
+    mainSection.innerHTML = ""
+    
+    let corgiContainer = document.createElement('div')
+    corgiContainer.id = "corgi-container"
+    mainSection.appendChild(corgiContainer)
+
+    corgiAdapter.getCorgis()
 }
-
-
-
-
-
-
-
-
 
 
 }
