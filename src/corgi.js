@@ -22,6 +22,9 @@ class Corgi {
 //pls someonesaysike
 // how it grows up
 
+//as soon as the adopt form is submitted all of this should pop up
+
+
 setGif(){
     // gif i am going to use
 }
@@ -75,6 +78,6 @@ startGame() {
 
 // makecorgiobj remake the corgi object in snakecase for the backend so rails can read it
 
-// tall the points osea lo k pasa cada vez k punchas un buton 
+// tally the points osea lo k pasa cada vez k punchas un buton 
 // y como it interacts w the other progress bars osea if u click this how does it afffect the other bars
 // how many points go up n how much goes down 

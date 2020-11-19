@@ -7,6 +7,7 @@ const mainSection = document.getElementById('main')
 const adoptButton = document.getElementById('adopt-button')
 const newPlayerbutton = document.getElementById("newplayer")
 newPlayerbutton.addEventListener('click', newPlayer)
+const newPlayerSubmit = document.getElementById("new-player-submit")
 
 
 
@@ -34,7 +35,7 @@ const adoptForm = (`
 const newPlayerForm = (`
         <h2 id="new-player">Enter Your Name</h2>
         
-        <div>
+        <div id="newplayerformdivy">
         
         <form id="new-player-form">
         <input type="text" name="name" id="new-player-name-field" class="new-player-field" placeholder="Your Name Here">
@@ -45,21 +46,22 @@ const newPlayerForm = (`
     `);
 
 
-
+// you are at the page u click the button lets play
 function newPlayer(){
     mainSection.innerHTML += newPlayerForm
     hideNewPlayerDiv()
 }
 
-
+// you hide the buttonthat says lets play so u can enter yr name
 function hideNewPlayerDiv(){
     document.querySelector("#newplayerdivy").style.display = "none"
 }
 
+// you enter your name and it gets saved 
 function loginNewPlayer(e){
         e.preventDefault()
         
-        e.target.id === "new-player-submit" 
+        e.target === newPlayerSubmit 
         { let userObj = { user: {
                 name: document.getElementById("new-player-name-field").value,
             }
@@ -69,23 +71,25 @@ function loginNewPlayer(e){
         adopt()
     }
 
-
+// after you save the name adopt form pops up 
 function adopt(){
-    const newPlayerSubmit = document.getElementById("new-player-submit")
-    newPlayerSubmit.addEventListener("click", () =>
+     newPlayerSubmit.addEventListener("click", () =>
     console.log("plsfuckingstop"),
     mainSection.innerHTML += adoptForm)
-    hideAdopt()
+    hideNameDiv()
 }
 
-function hideAdopt(){
-    document.querySelector("#adopt-div").style.display = "none"
+// this should be hiding the name section so that u can see the adopt form
+function hideNameDiv(){
+    document.querySelector("#newplayerformdivy").style.display = "none"
 }
 
+// this listens for when u actually cick the adopt button
 function renderAdopt(){
     adoptButton.addEventListener('click', adoptA)
 }
 
+// this saves the corgi instance
 function adoptA(e){
     e.taget.disabled = true 
     e.preventDefault()

@@ -3,9 +3,10 @@ class UserAdapter {
         this.baseURL = url 
     }
 
+// this gets the info from idex.js of the name that was inputted and saves it
 
     loginPlayer(userObj){
-        fetch(this.baseURL+'/login',{
+        fetch(this.baseURL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(userObj) 
@@ -13,8 +14,12 @@ class UserAdapter {
         .then(response => response.json())
         .then(json => {
             currentUser = new User(json.userdata.user)
-            currentUser.renderProfile
         })
-        .catch(errors => "Oh no something went wrong!")
+        .catch(error => {
+            const newError = document.createElement('h5');
+            const text = document.createTextNode(`${error.message}`);
+            newError.appendChild(text);
+            document.querySelector('main').appendChild(newError)
+        })
     }
 }
