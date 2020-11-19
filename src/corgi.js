@@ -96,12 +96,31 @@ this.startGame()
 
 }
 
-// startGame() {
-//     // set up a timer for the game to begin
-// }
+// starts game i need to see how to set up the timer
+startGame() {
+    this.timer = window.setInterval()
+}
 
-// set up the game stats for each of the progress bars
-// like how much the bars change?
+// this is incharge of my progress bars 
+gameHandler(){
+ //decrease the hunger and happiness meters, but not below 0
+ this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
+ this.happinessMeter = this.valueLimit(this.happinessMeter -1 )
+ //update the progress bars
+ this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()  
+ 
+
+ // if the points are below -100 have the corgi run away???
+ if (this.totalPoints < -100){
+     this.removeDiv()
+     //stop the game timer from ticking
+     clearInterval(this.timer)
+     corgiAdapter.deleteCorgi(this.id)
+    //  make a function that shows an alert when corgi has ran
+     showDangerAlert(`${this.name} ran away!!!`)
+}
+}
+
 
 // evole or retire the corgi??? depending on what i decide to do
 
