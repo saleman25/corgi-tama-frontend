@@ -1,6 +1,6 @@
 class Corgi {
     static all = []
-    constructor(name, id, hunger_meter, lonliness_meter, happiness_meter, evolution_countdown, corgi_type){
+    constructor({name, id, hunger_meter, lonliness_meter, happiness_meter, evolution_countdown, corgi_type}){
         this.name = name;
         this.id = id;
         this.hunger_meter = hunger_meter;
@@ -8,10 +8,10 @@ class Corgi {
         this.happiness_meter = happiness_meter;
         this.evolution_countdown = evolution_countdown;
         this.corgi_type = corgi_type;
-        // this.gif = code for the corgi gif ima use
+        this.gif = `./animations/corgi.gif`
 
         Corgi.all.push(this)
-    }
+
 }
 
 // render corgi
@@ -25,12 +25,20 @@ class Corgi {
 //as soon as the adopt form is submitted all of this should pop up
 
 
-setGif(){
-    // gif i am going to use
+setGif() {
+    return this.gif = `./animations/corgi.gif`
 }
 
 renderProgressBarsInnerHTML(){
-    // in here is going to go allthe corgi factors
+    return `
+        <h1><strong>${this.name}</strong></h1>
+        <label for="hunger">Hunger</label>
+        <progress id="${this.id}-hunger" class="progress is-small is-success" value="${this.hungerMeter}" max="100">${this.hungerMeter}%</progress>
+        <label for="lonlieness">Lonlieness</label>
+        <progress id="${this.id}-lonlieness" class="progress is-small is-success" value="${this.lonlinessMeter}" max="100">${this.lonlienessMeter}%</progress>
+        <label for="happiness">Happiness</label>
+        <progress id="${this.id}-happiness" class="progress is-small is-success" value="${this.happinessMeter}" max="100">${this.happinessMeter}%</progress>
+        `
 }
 
 renderCorgi(){
@@ -59,13 +67,13 @@ let buttonsArea = document.createElement('div')
 buttonsArea.className = "buttons-area"
 
 
-// add the stupid buttons for the game
+// // add the stupid buttons for the game
 
-}
+// }
 
-startGame() {
-    // set up a timer for the game to begin
-}
+// startGame() {
+//     // set up a timer for the game to begin
+// }
 
 // set up the game stats for each of the progress bars
 // like how much the bars change?
@@ -81,3 +89,4 @@ startGame() {
 // tally the points osea lo k pasa cada vez k punchas un buton 
 // y como it interacts w the other progress bars osea if u click this how does it afffect the other bars
 // how many points go up n how much goes down 
+}

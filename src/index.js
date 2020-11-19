@@ -1,13 +1,14 @@
 
-const baseURL = "http://localhost:8080/"
+const baseURL = "http://localhost:3000/"
 let currentUser
-// const userAdapter = new UserAdapter(baseURL)
+const userAdapter = new UserAdapter(baseURL)
 // const corgiAdapter = new CorgiAdapter(baseURL)
 const mainSection = document.getElementById('main')
 const adoptButton = document.getElementById('adopt-button')
 const newPlayerbutton = document.getElementById("newplayer")
 newPlayerbutton.addEventListener('click', newPlayer)
-const newPlayerSubmit = document.getElementById("new-player-submit")
+
+
 
 
 
@@ -49,6 +50,8 @@ const newPlayerForm = (`
 // you are at the page u click the button lets play
 function newPlayer(){
     mainSection.innerHTML += newPlayerForm
+    const newPlayerSubmit = document.getElementById("new-player-submit")
+    newPlayerSubmit.addEventListener("click", loginNewPlayer)
     hideNewPlayerDiv()
 }
 
@@ -60,22 +63,18 @@ function hideNewPlayerDiv(){
 // you enter your name and it gets saved 
 function loginNewPlayer(e){
         e.preventDefault()
-        
-        e.target === newPlayerSubmit 
-        { let userObj = { user: {
-                name: document.getElementById("new-player-name-field").value,
+        let userObj = { 
+            user: e.target.previousElementSibling.value
             }
-        }
             userAdapter.loginPlayer(userObj)
-        }
         adopt()
     }
+    console.log("plsae work")
 
 // after you save the name adopt form pops up 
 function adopt(){
-     newPlayerSubmit.addEventListener("click", () =>
     console.log("plsfuckingstop"),
-    mainSection.innerHTML += adoptForm)
+    mainSection.innerHTML += adoptForm
     hideNameDiv()
 }
 

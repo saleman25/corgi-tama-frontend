@@ -3,40 +3,21 @@ class CorgiAdapter{
         this.baseURL = url
     }
 
-// i don't think i need this anymore bc i am not doing multiple corgis
-getCorgis(){
-    fetch(this.baseURL, {
-        method: "GET",
-        headers: {"Content-Type": "application/json"}
-    })
-    .then(resp => resp.json)
-    .then(corgis => {
-        corgis.forEach(corgi => {
-            corgi = new Corgi(corgi)
-            // make a render corgi in corgi.js corgi.renderCorgi()
-        })
-        if (Corgi.all.length === 0){
-            // make a renderAdoptionForm() in corgi.js that holds the adoption form
-        }
-    })
-    .catch(errors => um(errors)) 
-        // make um an actual fnction
-}
-
+    
 
 // update the corgi osea how old he is!
 // updateCorgi(){}
 
-
 // this is what happens as soon as the corgi was created 
 createCorgi(name){
-    fetch(this.baseURL, {
+    fetch(this.baseURL+"/corgis", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(name)     
     })
     .then(response => response.json())
     .then(data => {
+        const newCorgi = new Corgi(data);
         const newId = document.createElement('h1');
         const text = document.createTextNode(`${data.id}`);
         newId.appendChild(text);

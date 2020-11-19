@@ -1,6 +1,7 @@
 class User {
     constructor(name){
         this.name = name;
+        User.all.push(this)
     }
 
 // this should pop up after the adopt form?
@@ -14,6 +15,8 @@ renderProfile(){
 
     corgiAdapter.createCorgi()
 }
+
+static all = []
 
 
 }

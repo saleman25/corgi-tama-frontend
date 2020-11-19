@@ -6,7 +6,7 @@ class UserAdapter {
 // this gets the info from idex.js of the name that was inputted and saves it
 
     loginPlayer(userObj){
-        fetch(this.baseURL, {
+        fetch(this.baseURL+"/users", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(userObj) 
