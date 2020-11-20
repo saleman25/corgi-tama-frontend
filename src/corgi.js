@@ -100,7 +100,8 @@ gameHandler(){
     this.handlePoints()
  //decrease the hunger and happiness meters, but not below 0
  this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
- this.happinessMeter = this.valueLimit(this.happinessMeter -1 )
+ this.happinessMeter = this.valueLimit(this.happinessMeter - 2)
+ this.lonlienessMeter = this.valueLimit(this.lonlienessMeter - 2)
  //update the progress bars
  this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()  
  
@@ -138,7 +139,7 @@ goodbye(){
     Sincerely, ${this.name}.`
 }
 
-
+// snakecase for backend
 makeCorgiObj() {
     return {corgi: {
         id: this.id,
@@ -150,6 +151,7 @@ makeCorgiObj() {
     }}
 } 
 
+// this is what makes the bars change 
 handlePoints(){
     this.happinessHungerLonlinessPoints(this.hungerMeter)
     this.happinessHungerLonlinessPoints(this.happinessMeter)
@@ -168,6 +170,22 @@ happinessHungerLonlinessPoints(status){
     }
 }
 
+// how much each button gives 
+meal(e){
+this.hungerMeter = this.valueLimit(this.hungerMeter + 5)
+this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
+}
 
+play(e){
+this.happinessMeter = this.valueLimit(this.happinessMeter + 5)
+this.hungerMeter = this.valueLimit(this.hungerMeter - 3)
+this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
+}
+
+pet(e){
+this.lonlienessMeter = this.valueLimit(this.lonlienessMeter + 5)
+this.happinessMeter = this.valueLimit(this.happinessMeter + 3)
+this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
+}
 
 }
