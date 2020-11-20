@@ -67,6 +67,54 @@ body {
   text-decoration: none;
 }
 
+#adopt-form {
+  align-self: flex-start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.corgi-name-input::placeholder {
+  color: #3a3a3a;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.corgi-name-field {
+  border: none;
+  border: 1px solid #9370DB;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 0px 0px 5px 5px;
+  background-color:  #ffe6e9;
+}
+
+#adopt-submit {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: pink;
+  font-weight: bold;
+  background-color: #9370DB;
+  cursor: pointer;
+  outline: none;
+}
+
+#newplayer {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: pink;
+  font-weight: bold;
+  background-color: #9370DB;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
 .title {
   font-family: cursive;
   font-weight: bold;

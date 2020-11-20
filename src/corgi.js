@@ -101,7 +101,7 @@ startGame() {
     this.timer = window.setInterval()
 }
 
-// this is incharge of my progress bars 
+// this is in charge of my progress bars 
 gameHandler(){
  //decrease the hunger and happiness meters, but not below 0
  this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
@@ -120,26 +120,28 @@ gameHandler(){
 }
 }
 
+// removes the game div says goodbye and gives an adoption to play again
 byebyeCorgi() {
     this.removeDiv()
     let text = this.goodbye()
     createNote(text)
 }
 
+// removes the div
 removeDiv(){
     this.div.remove()
     adopt()
 }
 
+// goodbye that shows up when game is up
 goodbye(){
     return `Dear ${user.name}, 
-    Thank you for caring me. I am off to be an adult corgo and work at a firm in San Fransisco. Thanks for the good times, I wish you well ♡ 
-    Please consider adopting again ♡ 
+    ♡ Thank you for caring me. ♡
+    ♡ I am off to be an adult corgo and work at a firm in San Fransisco. ♡
+    ♡ Thanks for the good times, I wish you well ♡ 
+    ♡ Please consider adopting again ♡ 
     Sincerely, ${this.name}.`
 }
-// maybe here have an option to play again 
-
-
 
 
 // makecorgiobj remake the corgi object in snakecase for the backend so rails can read it
