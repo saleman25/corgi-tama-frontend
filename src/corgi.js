@@ -37,6 +37,12 @@ renderProgressBarsInnerHTML(){
 
 renderCorgi(){
 
+
+let corgiContainer = document.createElement('div')
+corgiContainer.id = "corgi-container"
+mainSection.appendChild(corgiContainer)
+
+
 let corgiDiv = document.createElement('div')
 this.div = corgiDiv
 corgiDiv.className =  "corgi-div"
@@ -51,12 +57,6 @@ babypup.src = this.setGif()
 corgiDiv.appendChild(babypup)
 
 
-// i think somewhere here i need to add my backgroun which
-// will b my "tama console"
-// let tamaconsole = document.createElement('img")
-// this.tamaconsole = tamaconsole
-// tamaconsole.src = "/images/cloud-background.jpg"
-// corgiDiv.appendChild(tamaconsole)
 
 let progressBarsContainer = document.createElement('div')
 progressBarsContainer.className = "progress-bars has-text-centered"
@@ -72,6 +72,8 @@ buttonsArea.className = "buttons-area"
 
 // meal button to feed || hunger meter
 let mealButton = document.createElement('img')
+document.getElementById('mealButton')
+mealButton.id = "mealButton"
 this.mealButton = mealButton
 mealButton.src = "./images/heart-button.jpg"
 buttonsArea.appendChild(mealButton)
@@ -79,6 +81,8 @@ mealButton.addEventListener('click', this.meal.bind(this))
 
 // pet button to pet || lonlieness meter
 let petButton = document.createElement('img')
+document.getElementById('petButton')
+petButton.id = "petButton"
 this.petButton = petButton
 petButton.src = "./images/heart-button2.jpg"
 buttonsArea.appendChild(petButton)
@@ -86,6 +90,8 @@ petButton.addEventListener('click', this.pet.bind(this))
 
 // play button to play || happiness meter
 let playButton = document.createElement('img')
+document.getElementById('playButton')
+playButton.id = "playButton"
 this.playButton = playButton
 playButton.src = "./images/heart-button1.jpg"
 buttonsArea.appendChild(playButton)
@@ -128,7 +134,6 @@ gameHandler(){
      showDangerAlert(`${this.name} ran away ☹`)
 }
 
-byebyeCorgi()
 
 }
 

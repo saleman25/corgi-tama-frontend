@@ -4,10 +4,11 @@ let currentUser
 const userAdapter = new UserAdapter(baseURL)
 const corgiAdapter = new CorgiAdapter(baseURL)
 const mainSection = document.getElementById('main')
-const adoptButton = document.getElementById('adopt-button')
+
 const newPlayerbutton = document.getElementById("newplayer")
 newPlayerbutton.addEventListener('click', newPlayer)
 
+let noteDiv = document.getElementById('note-container')
 
 const adoptForm = (`
     
@@ -65,6 +66,8 @@ function loginNewPlayer(e){
 // after you save the name adopt form pops up 
 function adopt(){
     mainSection.innerHTML += adoptForm
+    const adoptButton = document.getElementById('adopt-submit')
+    adoptButton.addEventListener('click', adoptA)
     hideNameDiv()
 }
 
@@ -73,19 +76,19 @@ function hideNameDiv(){
     document.querySelector("#newplayerformdivy").style.display = "none"
 }
 
-// this listens for when u actually cick the adopt button
-function renderAdopt(){
-    adoptButton.addEventListener('click', adoptA)
-}
 
 // this saves the corgi instance
 function adoptA(e){
-    e.taget.disabled = true 
-    e.preventDefault()
-    let name = document.getElementById("corgi-name-input").value
+    e.preventDefault()  
+    let name = e.target.previousElementSibling.value 
     corgiAdapter.createCorgi(name)
+    hideAdopt()
 }
 
+// this is going to hide the adoptform so that game can start
+function hideAdopt(){
+    document.querySelector("#adopt-div").style.display = "none"
+}
 
 // this is for when corgi runs away bc not getting enough attention
 function showDangerAlert(message){

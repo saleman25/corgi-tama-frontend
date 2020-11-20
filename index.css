@@ -124,3 +124,88 @@ body {
 .subtitle {
   font-family: cursive;
 }
+
+#mealButton img {
+  width:40px; 
+  height:40px; 
+  border: 0;
+  
+}
+
+#petButton img {
+  width:40px; 
+  height:40px; 
+  border: 0;
+  
+}
+
+#playButton img {
+  width:40px; 
+  height:40px; 
+  border: 0;
+  
+}
+
+.alert-danger {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+#note-container {
+  width:50%;
+  height:50%;
+  position:fixed;
+  top: 50%;
+  left:25%;
+  z-index:100;
+}
+
+
+
+#note-container {
+position: relative;
+width: 85%;
+height: 90%;
+top: 35%;
+left: 8%;
+z-index:100;
+}
+
+#buttons-area {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#mealButton {
+  width: 15%;
+  margin-left: 35px;
+  margin-right: 80px;
+}
+#petButton {
+  width: 15%;
+  margin-right: 80px;
+  margin-left: 45px;
+}
+#playButton {
+  width: 15%;
+  margin-left: 25px;
+}
