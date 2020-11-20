@@ -9,13 +9,8 @@ const newPlayerbutton = document.getElementById("newplayer")
 newPlayerbutton.addEventListener('click', newPlayer)
 
 
-
-
-
 const adoptForm = (`
     
-
-
 <div id="adopt-div">
        
 <h2 id="adopt-header">Adopt Me!</h2>
@@ -29,20 +24,19 @@ const adoptForm = (`
 `);
 
 
-
-
 const newPlayerForm = (`
-    <div id="newplayerformdivy">
+    
+<div id="newplayerformdivy">
        
-    <h2 id="new-player">Enter Your Name</h2>
+<h2 id="new-player">Enter Your Name</h2>
         
-    <form id="new-player-form">
-    <input type="text" name="name" id="new-player-name-field" class="new-player-field" placeholder="Your Name Here">
-    <input type="submit" value="Lets Find You a Puppy!" id="new-player-submit">
-    </form>
+<form id="new-player-form">
+<input type="text" name="name" id="new-player-name-field" class="new-player-field" placeholder="Your Name Here">
+<input type="submit" value="Lets Find You a Puppy!" id="new-player-submit">
+</form>
       
-    </div>
-    `);
+</div>
+`);
 
 
 // you are at the page u click the button lets play
@@ -115,7 +109,6 @@ function showDangerAlert(message){
     //alert disappears when they click the closeButton
     closeButton.addEventListener('click', close)
 }
-
 
 // note for the goodbye
 function createNote(message){

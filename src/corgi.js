@@ -14,13 +14,6 @@ class Corgi {
 
 }
 
-// render corgi
-//gif
-//progressbars
-//buttons
-//gametimer
-//pls someonesaysike
-// how it grows up
 
 //as soon as the adopt form is submitted all of this should pop up
 
@@ -103,6 +96,8 @@ startGame() {
 
 // this is in charge of my progress bars 
 gameHandler(){
+    // this tallies the points osea how each bar reacts w each button
+    this.handlePoints()
  //decrease the hunger and happiness meters, but not below 0
  this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
  this.happinessMeter = this.valueLimit(this.happinessMeter -1 )
@@ -144,9 +139,35 @@ goodbye(){
 }
 
 
-// makecorgiobj remake the corgi object in snakecase for the backend so rails can read it
+makeCorgiObj() {
+    return {corgi: {
+        id: this.id,
+        name: this.name,
+        hunger_meter: this.hungerMeter,
+        happiness_meter: this.happinessMeter,
+        lonliness_meter: this.lonlienessMeter,
 
-// tally the points osea lo k pasa cada vez k punchas un buton 
-// y como it interacts w the other progress bars osea if u click this how does it afffect the other bars
-// how many points go up n how much goes down 
+    }}
+} 
+
+handlePoints(){
+    this.happinessHungerLonlinessPoints(this.hungerMeter)
+    this.happinessHungerLonlinessPoints(this.happinessMeter)
+    this.happinessHungerLonlinessPoints(this.lonlienessMeter)
+}
+
+happinessHungerLonlinessPoints(status){
+    if (status < 25){
+        this.totalPoints -= 5
+    } else if (status < 50){
+        this.totalPoints -= 3
+    }else if (status < 75){
+        this.totalPoints -= 3
+    }else {
+        this.totalPoints += 5
+    }
+}
+
+
+
 }
