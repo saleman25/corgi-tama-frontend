@@ -69,11 +69,9 @@ function loginNewPlayer(e){
             userAdapter.loginPlayer(userObj)
         adopt()
     }
-    console.log("plsae work")
 
 // after you save the name adopt form pops up 
 function adopt(){
-    console.log("plsfuckingstop"),
     mainSection.innerHTML += adoptForm
     hideNameDiv()
 }
@@ -94,4 +92,61 @@ function adoptA(e){
     e.preventDefault()
     let name = document.getElementById("corgi-name-input").value
     corgiAdapter.createCorgi(name)
+}
+
+
+// this is for when corgi runs away bc not getting enough attention
+function showDangerAlert(message){
+
+    let alertDiv = document.createElement('div')
+    alertDiv.className = "alert-danger"
+    alertDiv.innerText = `${message}`
+
+    document.getElementById('alert-container').appendChild(alertDiv)
+
+    let closeButton = document.createElement('span')
+    closeButton.className = "closebtn"
+    closeButton.innerHTML = `&times;`
+    alertDiv.appendChild(closeButton)
+
+    //alert goes away on it's own after 3 seconds
+    window.setTimeout(() => {
+        closeButton.parentElement.hidden = true
+    }, 3000)
+
+    //alert disappears when they click the closeButton
+    closeButton.addEventListener('click', close)
+}
+
+
+// note for the goodbye
+function createNote(message){
+
+    let note = `
+    <div class="callout">
+        <span class="callout-closebtn">&times;</span>
+        <div class="callout-container">
+            <p>${message}</p>
+        </div>
+    </div>
+    `
+    noteDiv.innerHTML += note
+    noteDiv.hidden = false
+    noteDiv.addEventListener('click', removeNote)
+
+}
+
+// removes the goodbye
+function removeNote(e){
+    if (e.target.className === "callout-closebtn"){
+        e.target.parentElement.remove()
+        // only hide the noteDiv if it is empty
+        if (noteDiv.childElementCount === 0){
+            noteDiv.hidden = true
+        }
+    }
+}
+
+function close(e){
+    e.target.parentElement.hidden = true
 }

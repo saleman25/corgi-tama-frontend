@@ -116,17 +116,31 @@ gameHandler(){
      //stop the game timer from ticking
      clearInterval(this.timer)
      corgiAdapter.deleteCorgi(this.id)
-    //  make a function that shows an alert when corgi has ran
-     showDangerAlert(`${this.name} ran away!!!`)
+     showDangerAlert(`${this.name} ran away ☹`)
 }
 }
 
+byebyeCorgi() {
+    this.removeDiv()
+    let text = this.goodbye()
+    createNote(text)
+}
 
-// evole or retire the corgi??? depending on what i decide to do
+removeDiv(){
+    this.div.remove()
+    adopt()
+}
 
-// remove the div so that the player knows the game ended
+goodbye(){
+    return `Dear ${user.name}, 
+    Thank you for caring me. I am off to be an adult corgo and work at a firm in San Fransisco. Thanks for the good times, I wish you well ♡ 
+    Please consider adopting again ♡ 
+    Sincerely, ${this.name}.`
+}
+// maybe here have an option to play again 
 
-// goodbye and add an option to play again 
+
+
 
 // makecorgiobj remake the corgi object in snakecase for the backend so rails can read it
 
