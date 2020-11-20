@@ -5,7 +5,7 @@ class CorgiAdapter{
 
 // updates corgi to show that hes older and hes on his way
 updateCorgi(corgiObj, id){
-    fetch(this.baseURL+`${id}`, {
+    fetch(this.baseURL+`/${id}`, {
       method: "PATCH",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(corgiObj)  
@@ -38,7 +38,7 @@ createCorgi(name){
 
 
 deleteCorgi(id){
-    fetch(this.baseURL+'${id}', {
+    fetch(this.baseURL+`/${id}`, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'}
     })

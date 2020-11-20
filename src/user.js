@@ -8,12 +8,12 @@ class User {
 renderProfile(){
     let mainSection = document.getElementById('main')
     mainSection.innerHTML = ""
-    
+
     let corgiContainer = document.createElement('div')
     corgiContainer.id = "corgi-container"
     mainSection.appendChild(corgiContainer)
 
-    corgiAdapter.createCorgi()
+
 }
 
 static all = []

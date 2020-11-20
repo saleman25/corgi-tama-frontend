@@ -1,13 +1,12 @@
 class Corgi {
     static all = []
-    constructor({name, id, hunger_meter, lonliness_meter, happiness_meter, evolution_countdown, corgi_type}){
+    constructor({name, id, hunger_meter, lonliness_meter, happiness_meter}){
         this.name = name;
         this.id = id;
         this.hunger_meter = hunger_meter;
         this.lonliness_meter = lonliness_meter;
         this.happiness_meter = happiness_meter;
-        this.evolution_countdown = evolution_countdown;
-        this.corgi_type = corgi_type;
+
         this.gif = `./animations/corgi.gif`
 
         Corgi.all.push(this)
@@ -16,7 +15,9 @@ class Corgi {
 
 
 //as soon as the adopt form is submitted all of this should pop up
-
+valueLimit(val, min=0, max=100){
+    return val < min ? min : (val > max ? max : val)
+}
 
 setGif() {
     return this.gif = `./animations/corgi.gif`
@@ -49,6 +50,14 @@ babypup.src = this.setGif()
 
 corgiDiv.appendChild(babypup)
 
+
+// i think somewhere here i need to add my backgroun which
+// will b my "tama console"
+// let tamaconsole = document.createElement('img")
+// this.tamaconsole = tamaconsole
+// tamaconsole.src = "/images/cloud-background.jpg"
+// corgiDiv.appendChild(tamaconsole)
+
 let progressBarsContainer = document.createElement('div')
 progressBarsContainer.className = "progress-bars has-text-centered"
 progressBarsContainer.id = `${this.id}-progress-bars`
@@ -66,18 +75,21 @@ let mealButton = document.createElement('img')
 this.mealButton = mealButton
 mealButton.src = "./images/heart-button.jpg"
 buttonsArea.appendChild(mealButton)
+mealButton.addEventListener('click', this.meal.bind(this))
 
 // pet button to pet || lonlieness meter
 let petButton = document.createElement('img')
 this.petButton = petButton
-petButton.src = "./images/heart-button-2.jpg"
+petButton.src = "./images/heart-button2.jpg"
 buttonsArea.appendChild(petButton)
+petButton.addEventListener('click', this.pet.bind(this))
 
 // play button to play || happiness meter
 let playButton = document.createElement('img')
 this.playButton = playButton
-playButton.src = "./images/heart-button-1.jpg"
+playButton.src = "./images/heart-button1.jpg"
 buttonsArea.appendChild(playButton)
+playButton.addEventListener('click', this.play.bind(this))
 
 // add progressbars n buttons
 corgiDiv.append(progressBarsContainer, buttonsArea)
@@ -91,13 +103,14 @@ this.startGame()
 
 // starts game i need to see how to set up the timer
 startGame() {
-    this.timer = window.setInterval()
+    this.timer = setTimeout(this.gameHandler.bind(this), 180000)
 }
 
 // this is in charge of my progress bars 
 gameHandler(){
     // this tallies the points osea how each bar reacts w each button
     this.handlePoints()
+
  //decrease the hunger and happiness meters, but not below 0
  this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
  this.happinessMeter = this.valueLimit(this.happinessMeter - 2)
@@ -114,9 +127,12 @@ gameHandler(){
      corgiAdapter.deleteCorgi(this.id)
      showDangerAlert(`${this.name} ran away ☹`)
 }
+
+byebyeCorgi()
+
 }
 
-// removes the game div says goodbye and gives an adoption to play again
+// removes the game div says goodbye and gives an option to play again
 byebyeCorgi() {
     this.removeDiv()
     let text = this.goodbye()
@@ -126,7 +142,6 @@ byebyeCorgi() {
 // removes the div
 removeDiv(){
     this.div.remove()
-    adopt()
 }
 
 // goodbye that shows up when game is up
