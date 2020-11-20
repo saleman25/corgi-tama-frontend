@@ -3,10 +3,14 @@ class CorgiAdapter{
         this.baseURL = url
     }
 
-    
-
-// update the corgi osea how old he is!
-// updateCorgi(){}
+// updates corgi to show that hes older and hes on his way
+updateCorgi(corgiObj, id){
+    fetch(this.baseURL+`${id}`, {
+      method: "PATCH",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(corgiObj)  
+    })
+}
 
 // this is what happens as soon as the corgi was created 
 createCorgi(name){
@@ -20,6 +24,7 @@ createCorgi(name){
         const newCorgi = new Corgi(data);
         const newId = document.createElement('h1');
         const text = document.createTextNode(`${data.id}`);
+        newCorgi.renderCorgi()
         newId.appendChild(text);
         document.querySelector('main').appendChild(newId);
     })
@@ -31,7 +36,7 @@ createCorgi(name){
     })
 }
 
-// i am not sure if i still need this one either
+
 deleteCorgi(id){
     fetch(this.baseURL+'${id}', {
         method: "DELETE",
