@@ -80,7 +80,7 @@ function hideNameDiv(){
 // this saves the corgi instance
 function adoptA(e){
     e.preventDefault()  
-    let name = e.target.previousElementSibling.value 
+    let name = {name: e.target.previousElementSibling.value}
     corgiAdapter.createCorgi(name)
     hideAdopt()
 }
@@ -115,7 +115,8 @@ function showDangerAlert(message){
 
 // note for the goodbye
 function createNote(message){
-
+    let noteDiv = document.getElementById('note-container')
+    
     let note = `
     <div class="callout">
         <span class="callout-closebtn">&times;</span>

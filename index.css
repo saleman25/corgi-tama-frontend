@@ -116,14 +116,13 @@ body {
 }
 
 .title {
-  font-family: cursive;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 40px;
+
 }
 
-.subtitle {
-  font-family: cursive;
-}
+
+
 
 #mealButton img {
   width:40px; 
@@ -209,3 +208,4 @@ z-index:100;
   width: 15%;
   margin-left: 25px;
 }
+

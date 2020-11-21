@@ -13,7 +13,7 @@ class UserAdapter {
         })
         .then(response => response.json())
         .then(json => {
-            currentUser = new User(json.userdata.user)
+            currentUser = new User(json)
         })
         .catch(error => {
             const newError = document.createElement('h5');

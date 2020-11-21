@@ -1,6 +1,8 @@
 class User {
-    constructor(name){
-        this.name = name;
+    constructor(userObj){
+        this.name = userObj.name;
+        this.id = userObj.id;
+
         User.all.push(this)
     }
 

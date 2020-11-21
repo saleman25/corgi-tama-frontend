@@ -13,17 +13,20 @@ updateCorgi(corgiObj, id){
 }
 
 // this is what happens as soon as the corgi was created 
-createCorgi(name){
+createCorgi(corgi){
+   
     fetch(this.baseURL+"/corgis", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(name)     
+        body: JSON.stringify({name: corgi.name, user_id: User.all[0].id})     
     })
     .then(response => response.json())
     .then(data => {
         const newCorgi = new Corgi(data);
         const newId = document.createElement('h1');
         const text = document.createTextNode(`${data.id}`);
+        console.log(newCorgi)
+        newCorgi.startGame();
         newCorgi.renderCorgi()
         newId.appendChild(text);
         document.querySelector('main').appendChild(newId);

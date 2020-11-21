@@ -28,7 +28,7 @@ renderProgressBarsInnerHTML(){
         <h1><strong>${this.name}</strong></h1>
         <label for="hunger">Hunger</label>
         <progress id="${this.id}-hunger" class="progress is-small is-success" value="${this.hungerMeter}" max="100">${this.hungerMeter}%</progress>
-        <label for="lonlieness">Lonlieness</label>
+        <label for="lonlieness">Lonliness</label>
         <progress id="${this.id}-lonlieness" class="progress is-small is-success" value="${this.lonlinessMeter}" max="100">${this.lonlienessMeter}%</progress>
         <label for="happiness">Happiness</label>
         <progress id="${this.id}-happiness" class="progress is-small is-success" value="${this.happinessMeter}" max="100">${this.happinessMeter}%</progress>
@@ -103,7 +103,6 @@ corgiDiv.append(progressBarsContainer, buttonsArea)
 //add individual corgi div to main div
 corgiContainer.appendChild(corgiDiv)
 
-this.startGame()
 
 }
 
@@ -120,15 +119,15 @@ gameHandler(){
  //decrease the hunger and happiness meters, but not below 0
  this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
  this.happinessMeter = this.valueLimit(this.happinessMeter - 2)
- this.lonlienessMeter = this.valueLimit(this.lonlienessMeter - 2)
+ this.lonlinessMeter = this.valueLimit(this.lonlinessMeter - 2)
  //update the progress bars
  this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()  
- 
+
 
  // if the points are below -100 have the corgi run away???
  if (this.totalPoints < -100){
      this.removeDiv()
-     //stop the game timer from ticking
+     //stop timer n display an alert??
      clearInterval(this.timer)
      corgiAdapter.deleteCorgi(this.id)
      showDangerAlert(`${this.name} ran away ☹`)
@@ -139,9 +138,10 @@ gameHandler(){
 
 // removes the game div says goodbye and gives an option to play again
 byebyeCorgi() {
-    this.removeDiv()
+    if (this.timer === 180000)
+    {this.removeDiv()
     let text = this.goodbye()
-    createNote(text)
+    createNote(text)}
 }
 
 // removes the div
@@ -151,7 +151,9 @@ removeDiv(){
 
 // goodbye that shows up when game is up
 goodbye(){
-    return `Dear ${user.name}, 
+    return `
+    ./animations/corgigoingoff.gif
+    Dear ${user.name}, 
     ♡ Thank you for caring me. ♡
     ♡ I am off to be an adult corgo and work at a firm in San Fransisco. ♡
     ♡ Thanks for the good times, I wish you well ♡ 
@@ -166,8 +168,7 @@ makeCorgiObj() {
         name: this.name,
         hunger_meter: this.hungerMeter,
         happiness_meter: this.happinessMeter,
-        lonliness_meter: this.lonlienessMeter,
-
+        lonliness_meter: this.lonlinessMeter
     }}
 } 
 
@@ -175,7 +176,7 @@ makeCorgiObj() {
 handlePoints(){
     this.happinessHungerLonlinessPoints(this.hungerMeter)
     this.happinessHungerLonlinessPoints(this.happinessMeter)
-    this.happinessHungerLonlinessPoints(this.lonlienessMeter)
+    this.happinessHungerLonlinessPoints(this.lonlinessMeter)
 }
 
 happinessHungerLonlinessPoints(status){
@@ -203,7 +204,7 @@ this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 }
 
 pet(e){
-this.lonlienessMeter = this.valueLimit(this.lonlienessMeter + 5)
+this.lonlinessMeter = this.valueLimit(this.lonlinessMeter + 5)
 this.happinessMeter = this.valueLimit(this.happinessMeter + 3)
 this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 }
