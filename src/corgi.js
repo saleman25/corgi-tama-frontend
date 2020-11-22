@@ -190,7 +190,7 @@ goodbye(){
     return `
     Dear ${User.all[0].name}, 
     <br>
-    ♡ Thank you for caring me. ♡
+    ♡ Thank you for caring for me. ♡
     <br>
     ♡ I am off to be an adult corgo and work at a firm in San Fransisco. ♡
     <br>
