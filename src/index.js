@@ -121,6 +121,7 @@ function createNote(message){
     <div class="callout">
         <span class="callout-closebtn">&times;</span>
         <div class="callout-container">
+            <img src="./animations/corgigoingoff.gif">
             <p>${message}</p>
         </div>
     </div>

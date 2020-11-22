@@ -3,9 +3,9 @@ class CorgiAdapter{
         this.baseURL = url
     }
 
-// updates corgi to show that hes older and hes on his way
+// updates corgi 
 updateCorgi(corgiObj, id){
-    fetch(this.baseURL+`/${id}`, {
+    fetch(this.baseURL+`corgis/${id}`, {
       method: "PATCH",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(corgiObj)  
@@ -23,11 +23,12 @@ createCorgi(corgi){
     .then(response => response.json())
     .then(data => {
         const newCorgi = new Corgi(data);
+        console.log(data)
         const newId = document.createElement('h1');
         const text = document.createTextNode(`${data.id}`);
-        console.log(newCorgi)
+        newCorgi.renderProgressBarsInnerHTML();
         newCorgi.startGame();
-        newCorgi.renderCorgi()
+        newCorgi.renderCorgi();
         newId.appendChild(text);
         document.querySelector('main').appendChild(newId);
     })
@@ -41,7 +42,7 @@ createCorgi(corgi){
 
 
 deleteCorgi(id){
-    fetch(this.baseURL+`/${id}`, {
+    fetch(this.baseURL+`corgis/${id}`, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'}
     })

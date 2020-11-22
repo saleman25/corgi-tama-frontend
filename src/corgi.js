@@ -3,9 +3,10 @@ class Corgi {
     constructor({name, id, hunger_meter, lonliness_meter, happiness_meter}){
         this.name = name;
         this.id = id;
-        this.hunger_meter = hunger_meter;
-        this.lonliness_meter = lonliness_meter;
-        this.happiness_meter = happiness_meter;
+        this.hungerMeter = hunger_meter;
+        this.lonlinessMeter = lonliness_meter;
+        this.happinessMeter = happiness_meter;
+        this.count = 0;
 
         this.gif = `./animations/corgi.gif`
 
@@ -15,23 +16,43 @@ class Corgi {
 
 
 //as soon as the adopt form is submitted all of this should pop up
-valueLimit(val, min=0, max=100){
+valueLimit(val){
+    let min = 0
+    let max = 100
+    Math.min(Math.max(parseInt(val), 0), 100);
     return val < min ? min : (val > max ? max : val)
 }
+
 
 setGif() {
     return this.gif = `./animations/corgi.gif`
 }
 
 renderProgressBarsInnerHTML(){
+    let lonlinessLabel = ""
+    if(this.lonlinessMeter >= 75){
+        lonlinessLabel = "I am v loved!!!"
+    }else if(this.lonlinessMeter <= 25){
+        lonlinessLabel = "pls love me"
+    }else{
+        lonlinessLabel = "Lonliness"
+    }
+
+
     return `
         <h1><strong>${this.name}</strong></h1>
+
         <label for="hunger">Hunger</label>
-        <progress id="${this.id}-hunger" class="progress is-small is-success" value="${this.hungerMeter}" max="100">${this.hungerMeter}%</progress>
-        <label for="lonlieness">Lonliness</label>
-        <progress id="${this.id}-lonlieness" class="progress is-small is-success" value="${this.lonlinessMeter}" max="100">${this.lonlienessMeter}%</progress>
+
+        <meter id="hunger-meter" value="${this.hungerMeter}" max="100">${this.hungerMeter}%</meter>
+        
+        <label for="lonlieness">${lonlinessLabel}</label>
+        
+        <meter id="lonliness-meter" value="${this.lonlinessMeter}" max="100">${this.lonlinessMeter}%</meter>
+       
         <label for="happiness">Happiness</label>
-        <progress id="${this.id}-happiness" class="progress is-small is-success" value="${this.happinessMeter}" max="100">${this.happinessMeter}%</progress>
+        
+        <meter id="happiness-meter" value="${this.happinessMeter}" max="100">${this.happinessMeter}%</meter>
         `
 }
 
@@ -60,7 +81,7 @@ corgiDiv.appendChild(babypup)
 
 let progressBarsContainer = document.createElement('div')
 progressBarsContainer.className = "progress-bars has-text-centered"
-progressBarsContainer.id = `${this.id}-progress-bars`
+progressBarsContainer.id = "progress-bars"
 
 
 this.progressBarsContainer = progressBarsContainer
@@ -108,40 +129,55 @@ corgiContainer.appendChild(corgiDiv)
 
 // starts game i need to see how to set up the timer
 startGame() {
-    this.timer = setTimeout(this.gameHandler.bind(this), 180000)
+    this.timer = setInterval(this.gameHandler.bind(this))
 }
 
 // this is in charge of my progress bars 
 gameHandler(){
+    console.log(this.timer)
     // this tallies the points osea how each bar reacts w each button
-    this.handlePoints()
-
+   // this.handlePoints()
+this.count ++
  //decrease the hunger and happiness meters, but not below 0
- this.hungerMeter = this.valueLimit(this.hungerMeter - 1)
- this.happinessMeter = this.valueLimit(this.happinessMeter - 2)
- this.lonlinessMeter = this.valueLimit(this.lonlinessMeter - 2)
- //update the progress bars
- this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()  
+ if (this.count % 1000 === 0) {
+    this.hungerMeter = this.valueLimit(this.hungerMeter -= 2)
+    this.happinessMeter = this.valueLimit(this.happinessMeter -= 2)
+    this.lonlinessMeter = this.valueLimit(this.lonlinessMeter -= 2)
+     //update the progress bars
+    this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML() 
+}
 
+ this.totalPoints()
+ 
 
+this.byebyeCorgi()
+
+}
  // if the points are below -100 have the corgi run away???
- if (this.totalPoints < -100){
-     this.removeDiv()
-     //stop timer n display an alert??
-     clearInterval(this.timer)
-     corgiAdapter.deleteCorgi(this.id)
-     showDangerAlert(`${this.name} ran away ☹`)
+totalPoints() { 
+    if (this.hungerMeter <= 0 || this.happinessMeter <= 0 || this.lonlinessMeter <= 0){
+        this.removeDiv()
+        //stop timer n display an alert??
+        clearInterval(this.timer)
+        corgiAdapter.deleteCorgi(this.id)
+        showDangerAlert(`${this.name} ran away ☹`)
+    }
 }
 
-
-}
 
 // removes the game div says goodbye and gives an option to play again
 byebyeCorgi() {
-    if (this.timer === 180000)
-    {this.removeDiv()
-    let text = this.goodbye()
-    createNote(text)}
+    if (this.count === 7500){
+        clearInterval(this.timer)
+        if (document.querySelector(".alert-danger")) {
+        document.querySelector(".alert-danger").style.display = "none"
+        }
+        corgiAdapter.updateCorgi(this.makeCorgiObj(), this.id)
+        this.removeDiv()
+        let text = this.goodbye()
+        createNote(text)
+    }
+    
 }
 
 // removes the div
@@ -152,12 +188,16 @@ removeDiv(){
 // goodbye that shows up when game is up
 goodbye(){
     return `
-    ./animations/corgigoingoff.gif
-    Dear ${user.name}, 
+    Dear ${User.all[0].name}, 
+    <br>
     ♡ Thank you for caring me. ♡
+    <br>
     ♡ I am off to be an adult corgo and work at a firm in San Fransisco. ♡
+    <br>
     ♡ Thanks for the good times, I wish you well ♡ 
+    <br>
     ♡ Please consider adopting again ♡ 
+    <br>
     Sincerely, ${this.name}.`
 }
 
@@ -193,19 +233,19 @@ happinessHungerLonlinessPoints(status){
 
 // how much each button gives 
 meal(e){
-this.hungerMeter = this.valueLimit(this.hungerMeter + 5)
+this.hungerMeter = this.valueLimit(this.hungerMeter += 5)
 this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 }
 
 play(e){
-this.happinessMeter = this.valueLimit(this.happinessMeter + 5)
-this.hungerMeter = this.valueLimit(this.hungerMeter - 3)
+this.happinessMeter = this.valueLimit(this.happinessMeter += 5)
+this.hungerMeter = this.valueLimit(this.hungerMeter -= 3)
 this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 }
 
 pet(e){
-this.lonlinessMeter = this.valueLimit(this.lonlinessMeter + 5)
-this.happinessMeter = this.valueLimit(this.happinessMeter + 3)
+this.lonlinessMeter = this.valueLimit(this.lonlinessMeter += 5)
+this.happinessMeter = this.valueLimit(this.happinessMeter += 3)
 this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML()
 }
 
