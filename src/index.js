@@ -146,3 +146,4 @@ function removeNote(e){
 function close(e){
     e.target.parentElement.hidden = true
 }
+

@@ -35,7 +35,7 @@ renderProgressBarsInnerHTML(){
     }else if(this.lonlinessMeter <= 25){
         lonlinessLabel = "pls love me"
     }else{
-        lonlinessLabel = "Lonliness"
+        lonlinessLabel = "Pet Me!"
     }
 
 
@@ -140,9 +140,9 @@ gameHandler(){
 this.count ++
  //decrease the hunger and happiness meters, but not below 0
  if (this.count % 1000 === 0) {
-    this.hungerMeter = this.valueLimit(this.hungerMeter -= 2)
-    this.happinessMeter = this.valueLimit(this.happinessMeter -= 2)
-    this.lonlinessMeter = this.valueLimit(this.lonlinessMeter -= 2)
+    this.hungerMeter = this.valueLimit(this.hungerMeter -= 3)
+    this.happinessMeter = this.valueLimit(this.happinessMeter -= 4)
+    this.lonlinessMeter = this.valueLimit(this.lonlinessMeter -= 3)
      //update the progress bars
     this.progressBarsContainer.innerHTML = this.renderProgressBarsInnerHTML() 
 }

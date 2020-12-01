@@ -36,7 +36,7 @@ createCorgi(corgi){
         const newError = document.createElement('h5');
         const text = document.createTextNode(`${error.message}`);
         newError.appendChild(text);
-        document.querySelector('body').appendChild(newError);
+        document.querySelector('main').appendChild(newError);
     })
 }
 
