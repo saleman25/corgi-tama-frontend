@@ -134,7 +134,7 @@ startGame() {
 
 // this is in charge of my progress bars 
 gameHandler(){
-    console.log(this.timer)
+    console.log(this)
     // this tallies the points osea how each bar reacts w each button
    // this.handlePoints()
 this.count ++
@@ -167,7 +167,7 @@ totalPoints() {
 
 // removes the game div says goodbye and gives an option to play again
 byebyeCorgi() {
-    if (this.count === 7500){
+    if (this.count === 2000){
         clearInterval(this.timer)
         if (document.querySelector(".alert-danger")) {
         document.querySelector(".alert-danger").style.display = "none"

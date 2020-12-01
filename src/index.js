@@ -132,6 +132,27 @@ function createNote(message){
 
 }
 
+function allCorgis(){
+    const allCorigs = Corgi.all
+    const corgis = allCorigs.slice(0,5)
+    mainSection.innerHTML += corgis[0].name  
+}
+
+const corgiButton = '<button class="corgs"> See your corgis </button>'
+
+function addingButton(){
+    mainSection.innerHTML += corgiButton
+    const corgsButton = document.querySelector(".corgs")
+    console.log(corgsButton)
+    corgsButton.addEventListener('click', allCorgis)
+    
+    hideNoteDiv()
+}
+
+function hideNoteDiv(){
+    document.querySelector('#note-container').style.display  = 'none'
+}
+
 // removes the goodbye
 function removeNote(e){
     if (e.target.className === "callout-closebtn"){
@@ -141,9 +162,15 @@ function removeNote(e){
             noteDiv.hidden = true
         }
     }
+    addingButton()
 }
 
 function close(e){
     e.target.parentElement.hidden = true
 }
+
+// a button that shows all the previous corgis 
+// after i close the goodbye message 
+// button will appear when u click the button itll show previous corgis 
+
 
